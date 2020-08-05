@@ -7,7 +7,7 @@ on:
     types: [opened, edited, synchronize, reopened]
 
 jobs:
-  build:
+  signed:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,4 +28,6 @@ jobs:
       run: git clone git@github.com:havogt/test_cla_file.git
     
     - name: Check for signed CLA
-      run: cat test_cla_file/CLA_SIGNED | grep ${{ github.actor }}
+      run: |
+        echo "Verifying user ${{ github.actor }} is in the CLA list"
+        cat test_cla_file/CLA_SIGNED | grep ${{ github.actor }}
