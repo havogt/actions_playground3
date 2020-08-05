@@ -3,10 +3,11 @@
 name: CLA
 
 on:
-  pull_request
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
 
 jobs:
-  build:
+  signed:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,4 +28,6 @@ jobs:
       run: git clone git@github.com:havogt/test_cla_file.git
     
     - name: Check for signed CLA
-      run: cat test_cla_file/CLA_SIGNED | grep ${{ github.actor }}
+      run: |
+        echo "Verifying user ${{ github.event.pull_request.user.login }} is in the CLA list"
+        cat test_cla_file/CLA_SIGNED | grep ${{ github.event.pull_request.user.login }}
