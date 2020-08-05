@@ -29,5 +29,5 @@ jobs:
     
     - name: Check for signed CLA
       run: |
-        echo "Verifying user ${{ github.event.sender }} is in the CLA list"
-        cat test_cla_file/CLA_SIGNED | grep ${{ github.event.sender }}
+        echo "Verifying user ${{ github.event.pull-request.user.login }} is in the CLA list"
+        cat test_cla_file/CLA_SIGNED | grep ${{ github.event.pull-request.user.login }}
