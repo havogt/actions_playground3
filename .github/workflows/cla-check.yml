@@ -3,7 +3,8 @@
 name: CLA
 
 on:
-  pull_request_target
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
 
 jobs:
   build:
